@@ -1,17 +1,13 @@
-from prettytable import PrettyTable
 from docx import Document
 from docx.shared import Pt
 import roman
 
 
-
-
-
 class Word():
-    def __init__(self, lista):
+    def __init__(self, lista, heading):
         self.lista = lista
         self.document = Document()
-        self.document.add_heading('Gauss Seidel', level=0)
+        self.document.add_heading(heading, level=0)
         font = self.document.paragraphs[0].runs[0].font
         font.size = Pt(50)
         self.p = self.document.add_paragraph('')
@@ -23,15 +19,15 @@ class Word():
 
     def return_lista (self):
         return self.lista
-    def cerrar_documento(self):
-        self.document.save("Gauss_Seidel_(Rosas Cedillo Jonathan).docx")
+    def cerrar_documento(self,text):
+        self.document.save(f"{text}_Jonathan_Rosas_Cedillo.docx")
 
     def imprimir(self):
         for filas in self.lista:
             self.p = self.document.add_paragraph(f"{filas[0]}x   {filas[1]}y   {filas[2]}z   =   {filas[3]}")
             font = self.p.runs[0].font
             font.size = Pt(12)
-            print(self.lista)
+
 
     def despeje(self,):
         self.p = self.document.add_paragraph('')
